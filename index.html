@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/54b7dc910c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="sidebar">
+        <div id="sidebar-controls">Controls</div>
+        <div id="sidebar-list">
+          <chat-list :tickets="tickets" :active="activeTicket" />
+        </div>
+      </div>
+
+      <div id="chat">
+        <div id="chat-details">
+          <div class="chat-details__info">
+            <div class="chat-details__title">
+              {{chat.number}} - {{chat.customer}}
+            </div>
+            <div class="chat-details__subtitle">{{chat.order}}</div>
+          </div>
+          <div class="chat-details__actions">
+            <!-- <div class="icon"><i class="fas fa-directions"></i></div> -->
+            <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+            <div class="icon"><i class="fas fa-history"></i></div>
+            <div class="icon"><i class="fas fa-angle-double-right"></i></div>
+          </div>
+        </div>
+        <div id="chat-messages">
+          <message-list :messages="chat.messages" />
+        </div>
+        <div id="chat-input">
+          <div class="chat-input-actions">
+            <div class="icon"><i class="fas fa-paperclip"></i></div>
+            <div class="icon"><i class="fas fa-bookmark"></i></div>
+          </div>
+          <div contenteditable id="chat-input-text"></div>
+          <div class="chat-input-send">
+            <div class="icon"><i class="fas fa-paper-plane"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      Vue.component("chat-list", {
+        data: function () {
+          return {};
+        },
+        props: ["tickets", "active"],
+        template: `<ul>
+              <li v-for="ticket in tickets" :key="ticket.id" :active="active === ticket.id">
+                <div class="chat-title">
+                  <div class="chat-customer">{{ticket.customer}}</div>
+                  <div class="chat-date">{{ticket.date}}</div>
+                </div>
+                <div class="chat-subtitle">
+                  {{ticket.order + ' - ' + ticket.number}}
+                </div>
+              </li>
+            </ul>`,
+      });
+
+      Vue.component("message-list", {
+        data: function () {
+          return {};
+        },
+        props: ["messages"],
+        template: `<div class="message-container">
+          <div
+          v-for="message in messages"
+          class="message-wrapper"
+          :class="'message-wrapper-' + (message.incoming ? 'in' : 'out')"
+          :key="message.id"
+        >
+          <div
+            class="message-title"
+            :class="'message-title-' + (message.incoming ? 'in' : 'out')"
+          >
+            <div class="message-customer">{{ message.customer }}</div>
+            <div class="message-date">{{ message.date }}</div>
+          </div>
+          <div class="message-text"
+          :class="'message-text-' + (message.incoming ? 'in' : 'out')">
+            {{message.text}}
+          </div>
+        </div>
+      </div>`,
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+          activeTicket: 3,
+          tickets: [
+            {
+              id: 1,
+              customer: "Customer name",
+              date: "11:50am",
+              number: "200200200200",
+              order: "00K123123123",
+            },
+            {
+              id: 2,
+              customer: "Customer name",
+              date: "11:50am",
+              number: "200200200200",
+              order: "00K123123123",
+            },
+            {
+              id: 3,
+              customer: "Customer name",
+              date: "11:50am",
+              number: "200200200200",
+              order: "00K123123123",
+            },
+            {
+              id: 4,
+              customer: "Customer name",
+              date: "11:50am",
+              number: "200200200200",
+              order: "00K123123123",
+            },
+            {
+              id: 5,
+              customer: "Customer name",
+              date: "11:50am",
+              number: "200200200200",
+              order: "00K123123123",
+            },
+          ],
+          chat: {
+            customer: "Fulano da Silva",
+            number: "200256745690",
+            order: "00K123123123",
+            messages: [
+              {
+                id: 1,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: false,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+              {
+                id: 2,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: true,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+              {
+                id: 3,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: false,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+              {
+                id: 4,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: false,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+              {
+                id: 5,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: true,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+              {
+                id: 6,
+                customer: "Customer Name",
+                date: "20/01/2020",
+                incoming: false,
+                text:
+                  "Eiusmod pariatur anim excepteur proident occaecat in. Eiusmod voluptate quis ipsum laborum esse fugiat. Tempor tempor culpa do tempor qui non consequat culpa consequat voluptate elit laborum ex.",
+              },
+            ],
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

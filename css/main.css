@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #505050;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #b1b1b1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+#sidebar {
+  display: grid;
+  grid-template-rows: 80px auto;
+}
+#sidebar-controls {
+  background: #fff;
+  border-right: 1px solid #ccc;
+}
+#sidebar-list {
+  background: #fff;
+  overflow-y: auto;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+#sidebar-list > ul > li {
+  background: #f2f2f2;
+  padding: 10px;
+}
+
+#sidebar-list > ul > li[active] {
+  background: #35ee82;
+  padding: 10px;
+}
+
+#sidebar-list > ul > li:hover {
+  background: #97f5b3;
+  cursor: pointer;
+  transition: 0.4s all ease;
+}
+
+.chat-title {
+  display: grid;
+  grid-template-columns: 80% auto;
+}
+
+.chat-title > .chat-customer {
+  font-size: 1.2em;
+}
+
+.chat-title > .chat-date {
+  font-size: 0.8em;
+  color: #555;
+  justify-self: right;
+}
+
+.chat-subtitle {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #444;
+}
+
+#chat {
+  display: grid;
+  grid-template-rows: 80px auto fit-content(100px);
+  overflow-x: hidden;
+}
+#chat-details {
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-details__info {
+  /* display: flex;
+  align-items: center; */
+}
+
+.chat-details__actions {
+  display: flex;
+}
+
+.chat-details__title {
+  font-size: 1.2em;
+}
+
+.chat-details__subtitle {
+  font-size: 0.8em;
+  color: #666;
+}
+
+#chat-messages {
+  background: rgb(255, 255, 255);
+  background-image: url("../assets/background_messages.png");
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  overflow-y: scroll;
+}
+
+#chat-input {
+  padding: 10px;
+  background: #f2f2f2;
+  max-height: 100%;
+  border-top: 1px solid #ccc;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#chat-input-text {
+  display: block;
+  box-sizing: border-box;
+  flex: 1;
+  border-radius: 5px !important;
+  outline: none;
+  padding: 10px;
+  background: #fff;
+  margin: 0 5px;
+  max-height: 100px;
+  overflow-y: scroll;
+  color: #222;
+}
+
+.chat-input-actions {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  /* background: #333; */
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  font-size: 1.3em;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  color: rgb(122, 122, 122);
+}
+
+.icon:hover {
+  background: #f2f2f2;
+}
+
+.icon:hover i {
+  color: rgb(0, 89, 141);
+}
+
+.chat-input-send {
+  display: flex;
+  align-items: center;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-wrapper {
+  width: 70%;
+}
+
+.message-wrapper-out {
+  align-self: flex-end;
+}
+
+.message-wrapper-in {
+  align-self: flex-start;
+}
+
+.message-title {
+  display: grid;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6a6a6a;
+}
+
+.message-title-in {
+  grid-template-areas: "customer date";
+}
+
+.message-title-out {
+  grid-template-areas: "date customer";
+}
+
+.message-customer {
+  grid-area: customer;
+}
+
+.message-date {
+  grid-area: date;
+  color: #555;
+  justify-self: right;
+}
+
+.message-text {
+  margin: 5px 0px 10px 0px;
+  padding: 10px;
+  border-radius: 4px 4px 0 0;
+  font-size: 0.9em;
+}
+
+.message-text-in {
+  background: #e6e6e6;
+}
+
+.message-text-out {
+  background: #b5f4ff;
+}
